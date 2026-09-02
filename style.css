@@ -1,0 +1,59 @@
+*font{
+    font-family: vazir;
+}
+body{
+    align-content: center;
+    justify-content: center;
+}
+.gameOver{
+
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0,0,0,0.5);
+
+    color: white;
+
+    font-size: 30px;
+
+}
+.turn{
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: black;
+    font-size:30px ;
+    width: 10%;
+    height: 10px;
+}
+
+.border{
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(89, 212, 89, 0.8);
+
+    padding: 50px;
+
+    border-radius: 20px;
+
+}
+
+canvas{
+    position: relative;
+    align-items: center;
+    
+}
