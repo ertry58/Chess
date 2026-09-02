@@ -69,9 +69,14 @@ function createCells(){
 
 }
 createCells();
-window.addEventListener("resize",()=>{
+window.addEventListener("resize", ()=>{
 
-    location.reload();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // دوباره محاسبه اندازه برد
+    // دوباره ساخت cells
+    // redraw()
 
 });
 board.onload = ()=>{
