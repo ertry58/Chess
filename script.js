@@ -12,17 +12,24 @@ const colors = {
     light: "#F0D9B5",
     dark: "#B58863"
 };
-const boardX = window.innerWidth / 4 + 100;
-const boardY = window.innerHeight / 40 + 50;
+const boardSize = Math.min(
+    window.innerWidth * 0.9,
+    window.innerHeight * 0.8
+);
+
+const boardWidth = boardSize;
+const boardHeight = boardSize;
+const boardX = (window.innerWidth - boardWidth) / 2;
+
+const boardY = (window.innerHeight - boardHeight) / 2;
  let currentTurn = 0
-const boardWidth = 800;
-const boardHeight = 800;
+
 let turn = [
     "white",
     "black"
 ]
-const cellWidth = boardWidth / 11;
-const cellHeight = boardHeight / 10.9;
+const cellWidth = boardWidth / 10.6;
+const cellHeight = boardHeight / 10.5;
 const cells = []
 let pieceMove = new Audio()
 pieceMove.src = "./move-self.mp3"
@@ -37,21 +44,36 @@ const position = [
 
 let base = []
 
-for(let r = 0 ; r<8 ; r++){
-    for(let c = 0 ; c<8; c++){
-        const cell = {
-    row: r,
-    col: c,
+function createCells(){
 
-    x: boardX + c * cellWidth +19 ,
-    y: boardY + r * cellHeight + 5,
+    cells.length = 0;
 
-    width: cellWidth,
-    height: cellHeight}
-cells.push(cell);
+    for(let r=0;r<8;r++){
+
+        for(let c=0;c<8;c++){
+
+            cells.push({
+                row:r,
+                col:c,
+
+                x: boardX + c * cellWidth,
+                y: boardY + r * cellHeight,
+
+                width:cellWidth,
+                height:cellHeight
+            });
+
+        }
+
     }
-    
+
 }
+createCells();
+window.addEventListener("resize",()=>{
+
+    location.reload();
+
+});
 board.onload = ()=>{
  ctx.drawImage(
     board,
@@ -61,8 +83,8 @@ board.onload = ()=>{
     1600,
     boardX,
     boardY,
-    800,
-    800
+    boardHeight,
+    boardWidth
 );
 }
 
@@ -112,8 +134,10 @@ class Chess {
 
     draw(){
 
-        const width = this.sourceWidth / 5;
-        const height = this.sourceHeight / 5;
+ const scale = boardWidth / 800;
+
+const width = this.sourceWidth / 5 * scale;
+const height = this.sourceHeight / 5 * scale;
 
 
         ctx.drawImage(
